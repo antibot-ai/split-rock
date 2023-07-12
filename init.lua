@@ -9,6 +9,16 @@ local function split(str, sep)
   local arr = {}
 
   for part in string.gmatch(str, '[^'..sep..']+') do
+    if opts.trim then
+      part = part:gsub('^%s+', ''):gsub('%s+$', '')
+    end
+
+    if opts.upper then
+      part = string.upper(part)
+    elseif opts.lower then
+      part = string.lower(part)
+    end
+
     table.insert(arr, part)
   end
 
